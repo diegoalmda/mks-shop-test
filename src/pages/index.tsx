@@ -6,15 +6,11 @@ import { getAllProducts } from '../services/products';
 import { GlobalStyle } from '../styles/GlobalStyle';
 import { IProductData } from '../types/product';
 import { BoxSkeleton } from '../components/BoxSkeleton';
-
-import Image from 'next/image';
-import { formatCurrency } from '../utils/formatCurrency';
-
-import bagImg from '../assets/shopping-bag.svg';
+import { ProductCard } from '../components/ProductCard';
+import { CardsContainer } from '../components/CardsContainer';
 
 export default function Home() {
-  const [products, setProducts] = useState<IProductData[]>([]);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [products, setProducts] = useState<IProductData[] | null>([]);
 
   useEffect(() => {
     getAllProducts()
@@ -25,8 +21,6 @@ export default function Home() {
       });
   }, []);
 
-
-
   return (
     <>
       <GlobalStyle />
@@ -36,24 +30,13 @@ export default function Home() {
 
       <Header />
 
-      <main>
-        {/* <BoxSkeleton /> */}
-        {products.map((product) => (
-          <div key={product.id}>
-            <Image src={product.photo} alt={product.name} width={100} height={100} />
-            <div>
-              <p>{product.name}</p>
-              <strong>R${formatCurrency(product.price)}</strong>
-            </div>
-            <small>{product.description}</small>
-            <button>
-              <Image src={bagImg} alt="" width={20} height={20} />
-              <span>COMPRAR</span>
-            </button>
-          </div>
+      <CardsContainer>
+        {products?.length === 0 && <BoxSkeleton />}
+        {products === null && <p style={{color: 'red'}}>Ocorreu um erro no servidor de produtos!</p>}
+        {products?.map((product) => (
+          <ProductCard key={product.id} product={product} />
         ))}
-      </main>
-
+      </CardsContainer>
 
       <Footer />
     </>

@@ -4,8 +4,6 @@ export const FooterContainer = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  bottom: 0;
   margin: 0 auto;
 
   width: 100%;
@@ -14,4 +12,8 @@ export const FooterContainer = styled.footer`
   font-size: 0.75rem;
   background: var(--footer-background);
   color: var(--black);
+
+  position: fixed;
+  width: 100%;
+  bottom: 0;
 `;

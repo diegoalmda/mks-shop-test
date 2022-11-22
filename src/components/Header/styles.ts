@@ -5,9 +5,19 @@ export const HeaderContainer = styled.div`
   height: 6rem;
   display: flex;
   justify-content: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+
+  @media (max-width: 720px) {
+    height: 4rem;
+  }
 `;
 
 export const HeaderContent = styled.header`
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 1.2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,5 +53,18 @@ export const ButtonCart = styled.button`
 
   strong {
     font-size: 1.125rem;
+  }
+
+  @media (max-width: 720px) {
+    padding: 0.25rem 0.8rem;
+
+    img {
+      width: 0.8rem;
+      margin-right: 0.8rem;
+    }
+
+    strong {
+      font-size: 0.8rem;
+    }
   }
 `;

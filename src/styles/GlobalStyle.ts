@@ -38,12 +38,6 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 400;
   }
 
-  header, main {
-    max-width: 1320px;
-    margin: 0 auto;
-    padding: 0 1.2rem;
-  }
-
   strong {
     font-weight: 700;
   }

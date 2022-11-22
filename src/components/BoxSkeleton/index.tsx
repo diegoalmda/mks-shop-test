@@ -1,15 +1,16 @@
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import { SkeletonContainer } from './styles';
 
 export function BoxSkeleton() {
   return (
     <SkeletonTheme baseColor="#cecece" highlightColor="#bebebe">
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-        <Skeleton width={180} height={250} />
-        <Skeleton width={180} height={250} />
-        <Skeleton width={180} height={250} />
-        <Skeleton width={180} height={250} />
-      </div>
+      <SkeletonContainer>
+        <Skeleton width={'14.75rem'} height={'20rem'} />
+        <Skeleton width={'14.75rem'} height={'20rem'} />
+        <Skeleton width={'14.75rem'} height={'20rem'} />
+        <Skeleton width={'14.75rem'} height={'20rem'} />
+      </SkeletonContainer>
     </SkeletonTheme>
   );
 
