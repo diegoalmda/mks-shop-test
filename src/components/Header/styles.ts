@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakpoints } from '../../styles/GlobalStyle';
 
 export const HeaderContainer = styled.div`
   background: var(--background-secondary);
@@ -9,7 +10,7 @@ export const HeaderContainer = styled.div`
   width: 100%;
   top: 0;
 
-  @media (max-width: 720px) {
+  @media ${breakpoints.md} {
     height: 4rem;
   }
 `;
@@ -55,7 +56,7 @@ export const ButtonCart = styled.button`
     font-size: 1.125rem;
   }
 
-  @media (max-width: 720px) {
+  @media ${breakpoints.md} {
     padding: 0.25rem 0.8rem;
 
     img {

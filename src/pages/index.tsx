@@ -8,9 +8,19 @@ import { IProductData } from '../types/product';
 import { BoxSkeleton } from '../components/BoxSkeleton';
 import { ProductCard } from '../components/ProductCard';
 import { CardsContainer } from '../components/CardsContainer';
+import { CheckoutSection } from '../components/CheckoutSection';
 
 export default function Home() {
   const [products, setProducts] = useState<IProductData[] | null>([]);
+  const [showCheckout, setShowCheckout] = useState(false);
+
+  function handleShowCheckout() {
+    setShowCheckout(true);
+  }
+
+  function handleHideCheckout() {
+    setShowCheckout(false);
+  }
 
   useEffect(() => {
     getAllProducts()
@@ -23,12 +33,18 @@ export default function Home() {
 
   return (
     <>
+      <CheckoutSection
+        products={products!}
+        hideCheckout={handleHideCheckout}
+        showCheckout={showCheckout}
+      />
+
       <GlobalStyle />
       <Head>
         <title>MKS Store</title>
       </Head>
 
-      <Header />
+      <Header showCheckout={handleShowCheckout} />
 
       <CardsContainer>
         {products?.length === 0 && <BoxSkeleton />}

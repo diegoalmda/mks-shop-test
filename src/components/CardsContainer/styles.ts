@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakpoints } from '../../styles/GlobalStyle';
 
 export const Container = styled.main`
   max-width: 1080px;
@@ -12,7 +13,7 @@ export const Container = styled.main`
   flex-wrap: wrap;
   gap: 1.375rem;
 
-  @media (max-width: 720px) {
+  @media ${breakpoints.md} {
     margin: 5rem auto;
     gap: 1rem;
   }

@@ -4,7 +4,11 @@ import cartImg from '../../assets/cart.svg';
 
 import { HeaderContainer, LogoContainer, ButtonCart, HeaderContent } from './styles';
 
-export function Header() {
+interface HeaderProps {
+  showCheckout: () => void;
+}
+
+export function Header({ showCheckout }: HeaderProps) {
   return (
     <HeaderContainer>
       <HeaderContent>
@@ -12,7 +16,7 @@ export function Header() {
           <h1>MKS</h1>
           <span>Sistemas</span>
         </LogoContainer>
-        <ButtonCart>
+        <ButtonCart onClick={showCheckout}>
           <Image src={cartImg} alt="Imagem de carrinho de compras" />
           <strong>0</strong>
         </ButtonCart>

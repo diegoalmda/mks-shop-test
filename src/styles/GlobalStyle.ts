@@ -1,5 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
+export const breakpoints = {
+  md: '(max-width: 720px)',
+  lg: '(max-width: 1290px)',
+};
+
 export const GlobalStyle = createGlobalStyle`
   :root {
     --background: #E5E5E5;
@@ -9,6 +14,7 @@ export const GlobalStyle = createGlobalStyle`
 
     --price-background: #373737;
     --footer-background: #EEEEEE;
+    --quantity-button-border: #BFBFBF;
 
     --black: #000000;
     --white: #FFFFFF;
@@ -22,11 +28,11 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    @media (max-width: 1290px) {
+    @media ${breakpoints.lg} {
       font-size: 93.75%;
     }
 
-    @media (max-width: 720px) {
+    @media ${breakpoints.md} {
       font-size: 87.5%;
     }
   }
@@ -44,6 +50,7 @@ export const GlobalStyle = createGlobalStyle`
 
   button {
     cursor: pointer;
+    border: none;
     transition: filter 0.2s;
 
     &:hover {
