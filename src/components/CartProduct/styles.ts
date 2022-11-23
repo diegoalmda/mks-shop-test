@@ -60,6 +60,8 @@ export const ImageContainer = styled.div`
 
   img {
     margin-right: 1rem;
+    width: auto;
+    height: 3.5rem;
   }
 
   @media ${breakpoints.md} {
@@ -71,7 +73,7 @@ export const ImageContainer = styled.div`
 
     img {
       margin-right: 0;
-      width: 6rem;
+      width: auto;
       height: 6rem;
     }
   }

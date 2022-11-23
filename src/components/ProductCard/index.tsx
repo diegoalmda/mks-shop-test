@@ -11,6 +11,9 @@ import {
   ProductCardContent,
   BuyButton
 } from './styles';
+import { useDispatch } from 'react-redux';
+import { addProductToCart } from '../../store/cart';
+import { AppDispatch } from '../../store';
 
 type ProductCardProps = {
   product: IProductData,
@@ -18,6 +21,7 @@ type ProductCardProps = {
 
 export function ProductCard({ product }: ProductCardProps) {
   const productPrice = formatCurrency(product.price);
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <ProductCardContainer>
@@ -29,8 +33,8 @@ export function ProductCard({ product }: ProductCardProps) {
         </ProductInfo>
         <small>{product.description}</small>
       </ProductCardContent>
-      <BuyButton>
-        <Image src={bagImg} alt="" width={20} height={20} />
+      <BuyButton onClick={() => dispatch(addProductToCart(product))}>
+        <Image src={bagImg} alt="" width={0} height={0} />
         <span>COMPRAR</span>
       </BuyButton>
     </ProductCardContainer>

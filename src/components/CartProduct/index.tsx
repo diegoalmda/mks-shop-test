@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { IProductData } from '../../types/product';
+import { CartItemProps } from '../../types/product';
 import { formatCurrency } from '../../utils/formatCurrency';
 import {
   CartProductContainer,
@@ -12,7 +12,7 @@ import {
 } from './styles';
 
 type CartProductProps = {
-  cartItem: IProductData;
+  cartItem: CartItemProps;
 }
 
 export function CartProduct({ cartItem }: CartProductProps) {
@@ -33,7 +33,7 @@ export function CartProduct({ cartItem }: CartProductProps) {
             <small>Qtd:</small>
             <QuantityButtons>
               <button>-</button>
-              <span>29</span>
+              <span>{cartItem.quantity}</span>
               <button>+</button>
             </QuantityButtons>
           </QuantityValues>

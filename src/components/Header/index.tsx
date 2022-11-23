@@ -1,6 +1,8 @@
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
 
 import cartImg from '../../assets/cart.svg';
+import { cartQuantityItems } from '../../store/cart';
 
 import { HeaderContainer, LogoContainer, ButtonCart, HeaderContent } from './styles';
 
@@ -9,6 +11,8 @@ interface HeaderProps {
 }
 
 export function Header({ showCheckout }: HeaderProps) {
+  const numberOfItems = useSelector(cartQuantityItems);
+
   return (
     <HeaderContainer>
       <HeaderContent>
@@ -17,8 +21,8 @@ export function Header({ showCheckout }: HeaderProps) {
           <span>Sistemas</span>
         </LogoContainer>
         <ButtonCart onClick={showCheckout}>
-          <Image src={cartImg} alt="Imagem de carrinho de compras" />
-          <strong>0</strong>
+          <Image src={cartImg} alt="Imagem de carrinho de compras" width={0} height={0} />
+          <strong>{numberOfItems}</strong>
         </ButtonCart>
       </HeaderContent>
     </HeaderContainer>

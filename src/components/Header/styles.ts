@@ -49,6 +49,7 @@ export const ButtonCart = styled.button`
 
   img {
     width: 1.2rem;
+    height: auto;
     margin-right: 1.5rem;
   }
 

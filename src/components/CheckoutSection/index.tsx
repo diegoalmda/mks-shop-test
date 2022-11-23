@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+import { getAllCartItems } from '../../store/cart';
 import { IProductData } from '../../types/product';
 import { CartProduct } from '../CartProduct';
 import {
@@ -9,12 +11,14 @@ import {
 } from './styles';
 
 type CheckoutSectionProps = {
-  products: IProductData[];
+  // products: IProductData[];
   hideCheckout: () => void;
   showCheckout: boolean;
 }
 
-export function CheckoutSection({ products, hideCheckout, showCheckout }: CheckoutSectionProps) {
+export function CheckoutSection({ hideCheckout, showCheckout }: CheckoutSectionProps) {
+  const products = useSelector(getAllCartItems);
+
   return (
     <CheckoutContainer showCheckout={showCheckout}>
       <CheckoutHeader>

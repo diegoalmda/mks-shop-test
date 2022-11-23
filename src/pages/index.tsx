@@ -2,17 +2,25 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
-import { getAllProducts } from '../services/products';
+// import { getAllProducts } from '../services/api';
 import { GlobalStyle } from '../styles/GlobalStyle';
 import { IProductData } from '../types/product';
 import { BoxSkeleton } from '../components/BoxSkeleton';
 import { ProductCard } from '../components/ProductCard';
 import { CardsContainer } from '../components/CardsContainer';
 import { CheckoutSection } from '../components/CheckoutSection';
+import { useDispatch, useSelector } from 'react-redux';
+// import { getAllProducts } from '../store/fetchActions';
+import { AppDispatch, RootState } from '../store';
+import { fetchProducts, getAllProducts, getProductsStatus } from '../store/products';
 
 export default function Home() {
-  const [products, setProducts] = useState<IProductData[] | null>([]);
+  // const [products, setProducts] = useState<IProductData[] | null>([]);
   const [showCheckout, setShowCheckout] = useState(false);
+
+  const dispatch = useDispatch<AppDispatch>();
+  const list = useSelector(getAllProducts);
+  const productsStatus = useSelector(getProductsStatus);
 
   function handleShowCheckout() {
     setShowCheckout(true);
@@ -23,18 +31,23 @@ export default function Home() {
   }
 
   useEffect(() => {
-    getAllProducts()
-      .then((data) => {
-        if(data !== null){
-          setProducts(data);
-        }
-      });
-  }, []);
+    if (productsStatus === 'idle') {
+      dispatch(fetchProducts());
+    }
+  }, [productsStatus, dispatch]);
+
+  // useEffect(() => {
+  //   getAllProducts()
+  //     .then((data) => {
+  //       if(data !== null){
+  //         setProducts(data);
+  //       }
+  //     });
+  // }, []);
 
   return (
     <>
       <CheckoutSection
-        products={products!}
         hideCheckout={handleHideCheckout}
         showCheckout={showCheckout}
       />
@@ -47,9 +60,9 @@ export default function Home() {
       <Header showCheckout={handleShowCheckout} />
 
       <CardsContainer>
-        {products?.length === 0 && <BoxSkeleton />}
-        {products === null && <p style={{color: 'red'}}>Ocorreu um erro no servidor de produtos!</p>}
-        {products?.map((product) => (
+        {productsStatus === 'loading' && <BoxSkeleton />}
+        {productsStatus === 'failed' && <p style={{color: 'red'}}>Ocorreu um erro no servidor de produtos!</p>}
+        {list.products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </CardsContainer>

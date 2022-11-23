@@ -20,6 +20,11 @@ export const ProductCardContent = styled.div`
   align-items: center;
   padding: 0.875rem 0.875rem 0;
 
+  img {
+    width: auto;
+    height: 8.5rem;
+  }
+
   small {
     font-size: 0.6rem;
     font-weight: 300;
@@ -65,5 +70,7 @@ export const BuyButton = styled.button`
 
   img {
     margin-right: 0.6rem;
+    width: 1.35rem;
+    height: auto;
   }
 `;
