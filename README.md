@@ -23,7 +23,7 @@ O projeto foi criado com o framework [Next.js](https://nextjs.org/) inicializado
 - Redux toolkit
 - Styled-components
 - Jest
-- React testing library
+- Testing library
 - Axios
 
 ## 💻 Executando o projeto

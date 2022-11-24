@@ -20,7 +20,7 @@ export function Header({ showCheckout }: HeaderProps) {
           <h1>MKS</h1>
           <span>Sistemas</span>
         </LogoContainer>
-        <ButtonCart onClick={showCheckout}>
+        <ButtonCart type="button" onClick={showCheckout}>
           <Image src={cartImg} alt="Imagem de carrinho de compras" width={0} height={0} />
           <strong>{numberOfItems}</strong>
         </ButtonCart>
