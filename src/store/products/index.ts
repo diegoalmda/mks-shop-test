@@ -4,9 +4,14 @@ import { RootState } from '..';
 import { api } from '../../services/api';
 import { IProductData } from '../../types/product';
 
-const initialState = {
-  products: [] as IProductData[],
-  status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed';
+type InitialStateProps = {
+  products: IProductData[],
+  status: 'idle' | 'loading' | 'succeeded' | 'failed',
+}
+
+const initialState: InitialStateProps = {
+  products: [],
+  status: 'idle',
 };
 
 export const fetchProducts = createAsyncThunk('fetch/products', async () => {
@@ -20,14 +25,14 @@ const productsSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchProducts.pending, (state, action) => {
+      .addCase(fetchProducts.pending, (state) => {
         state.status = 'loading';
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.products = action.payload;
       })
-      .addCase(fetchProducts.rejected, (state, action) => {
+      .addCase(fetchProducts.rejected, (state) => {
         state.status = 'failed';
       });
   }
