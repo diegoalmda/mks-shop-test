@@ -1,9 +1,9 @@
-import dynamic from 'next/dynamic';
-import { useEffect, useState, useTransition } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Head from 'next/head';
 
 import { Footer } from '../components/Footer';
+import { Header } from '../components/Header';
 import { ProductsSkeleton } from '../components/Skeleton/ProductsSkeleton';
 import { ProductCard } from '../components/ProductCard';
 import { CardsContainer } from '../components/CardsContainer';
@@ -13,13 +13,9 @@ import { fetchProducts, getAllProducts, getProductsStatus } from '../store/produ
 import { AppDispatch } from '../store';
 
 import { GlobalStyle } from '../styles/GlobalStyle';
-import { HeaderSkeleton } from '../components/Skeleton/HeaderSkeleton';
-
-const Header = dynamic(() => import('../components/Header').then(mod => mod.Header));
 
 export default function Home() {
   const [showCheckout, setShowCheckout] = useState(false);
-  const [isPending] = useTransition();
 
   const dispatch = useDispatch<AppDispatch>();
   const list = useSelector(getAllProducts);
@@ -51,7 +47,7 @@ export default function Home() {
         <title>MKS Store</title>
       </Head>
 
-      { isPending ? <HeaderSkeleton /> : <Header showCheckout={handleShowCheckout} /> }
+      <Header showCheckout={handleShowCheckout} />
 
       <CardsContainer>
         {productsStatus === 'loading' && <ProductsSkeleton />}
