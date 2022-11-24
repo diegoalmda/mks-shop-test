@@ -95,6 +95,8 @@ export const CheckoutButton = styled.button`
   padding: 2.5rem 0;
   transition: background 0.2s;
 
+
+
   &:hover {
     background: var(--price-background);
   }

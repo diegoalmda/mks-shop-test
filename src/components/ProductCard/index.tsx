@@ -1,7 +1,10 @@
 import Image from 'next/image';
+import { useDispatch } from 'react-redux';
 
 import { IProductData } from '../../types/product';
 import { formatCurrency } from '../../utils/formatCurrency';
+import { addProductToCart } from '../../store/cart';
+import { AppDispatch } from '../../store';
 
 import bagImg from '../../assets/shopping-bag.svg';
 
@@ -11,9 +14,6 @@ import {
   ProductCardContent,
   BuyButton
 } from './styles';
-import { useDispatch } from 'react-redux';
-import { addProductToCart } from '../../store/cart';
-import { AppDispatch } from '../../store';
 
 type ProductCardProps = {
   product: IProductData,

@@ -1,18 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
 import { RootState } from '..';
 import { api } from '../../services/api';
 import { IProductData } from '../../types/product';
-
-// type Action = {
-//   type: keyof typeof actions,
-//   payload?: Array<IProductData>
-// }
-
-// type RequestStatus = {
-//   status: 'idle' | 'loading' | 'succeeded' | 'failed',
-// }
-
-// const status = typeof RequestStatus.status;
 
 const initialState = {
   products: [] as IProductData[],

@@ -1,7 +1,10 @@
-import { useSelector } from 'react-redux';
-import { getAllCartItems } from '../../store/cart';
-import { IProductData } from '../../types/product';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+
+import { AppDispatch } from '../../store';
+import { getAllCartItems, clearCart } from '../../store/cart';
 import { CartProduct } from '../CartProduct';
+
 import {
   CheckoutContainer,
   CheckoutHeader,
@@ -11,13 +14,25 @@ import {
 } from './styles';
 
 type CheckoutSectionProps = {
-  // products: IProductData[];
   hideCheckout: () => void;
   showCheckout: boolean;
 }
 
 export function CheckoutSection({ hideCheckout, showCheckout }: CheckoutSectionProps) {
   const products = useSelector(getAllCartItems);
+
+  const total = products.reduce((acc, cartItem) => {
+    const price = parseFloat(cartItem.price);
+    return acc + (cartItem.quantity * price);
+  }, 0);
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  function handleSendOrder() {
+    dispatch(clearCart());
+    hideCheckout();
+    toast.success('Pedido efetuado!', { autoClose: 1200, position: 'top-center' });
+  }
 
   return (
     <CheckoutContainer showCheckout={showCheckout}>
@@ -36,11 +51,13 @@ export function CheckoutSection({ hideCheckout, showCheckout }: CheckoutSectionP
         <span>
           Total:
         </span>
-        <strong>
-          R$798
-        </strong>
+        <strong>R${`${total}`}</strong>
       </TotalContainer>
-      <CheckoutButton>
+      <CheckoutButton
+        onClick={handleSendOrder}
+        disabled={products.length === 0}
+        title={`${products.length > 0 ? '' : 'Adicione produtos ao carrinho!'}`}
+      >
         <strong>
           Finalizar Compra
         </strong>

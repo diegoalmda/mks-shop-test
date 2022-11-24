@@ -1,6 +1,11 @@
 import Image from 'next/image';
-import { CartItemProps } from '../../types/product';
+import { useDispatch } from 'react-redux';
+
+import { AppDispatch } from '../../store';
+import { addProductToCart, decreaseItemQuantity, removeItemFromCart } from '../../store/cart';
+import { CartItemProps } from '../../types/cart';
 import { formatCurrency } from '../../utils/formatCurrency';
+
 import {
   CartProductContainer,
   CartContent,
@@ -16,11 +21,12 @@ type CartProductProps = {
 }
 
 export function CartProduct({ cartItem }: CartProductProps) {
+  const dispatch = useDispatch<AppDispatch>();
   const productPrice = formatCurrency(cartItem.price);
 
   return (
     <CartProductContainer>
-      <CloseButton title="Remover">
+      <CloseButton title="Remover" onClick={() => dispatch(removeItemFromCart(cartItem))}>
         <span>X</span>
       </CloseButton>
       <CartContent>
@@ -32,9 +38,9 @@ export function CartProduct({ cartItem }: CartProductProps) {
           <QuantityValues>
             <small>Qtd:</small>
             <QuantityButtons>
-              <button>-</button>
+              <button onClick={() => dispatch(decreaseItemQuantity(cartItem))}>-</button>
               <span>{cartItem.quantity}</span>
-              <button>+</button>
+              <button onClick={() => dispatch(addProductToCart(cartItem))}>+</button>
             </QuantityButtons>
           </QuantityValues>
           <strong>R${productPrice}</strong>

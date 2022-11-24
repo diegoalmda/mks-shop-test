@@ -1,21 +1,20 @@
-import Head from 'next/head';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Head from 'next/head';
+
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
-// import { getAllProducts } from '../services/api';
-import { GlobalStyle } from '../styles/GlobalStyle';
-import { IProductData } from '../types/product';
 import { BoxSkeleton } from '../components/BoxSkeleton';
 import { ProductCard } from '../components/ProductCard';
 import { CardsContainer } from '../components/CardsContainer';
 import { CheckoutSection } from '../components/CheckoutSection';
-import { useDispatch, useSelector } from 'react-redux';
-// import { getAllProducts } from '../store/fetchActions';
-import { AppDispatch, RootState } from '../store';
+
 import { fetchProducts, getAllProducts, getProductsStatus } from '../store/products';
+import { AppDispatch } from '../store';
+
+import { GlobalStyle } from '../styles/GlobalStyle';
 
 export default function Home() {
-  // const [products, setProducts] = useState<IProductData[] | null>([]);
   const [showCheckout, setShowCheckout] = useState(false);
 
   const dispatch = useDispatch<AppDispatch>();
@@ -35,15 +34,6 @@ export default function Home() {
       dispatch(fetchProducts());
     }
   }, [productsStatus, dispatch]);
-
-  // useEffect(() => {
-  //   getAllProducts()
-  //     .then((data) => {
-  //       if(data !== null){
-  //         setProducts(data);
-  //       }
-  //     });
-  // }, []);
 
   return (
     <>

@@ -8,7 +8,3 @@ export interface IProductData {
   createdAt: string;
   updatedAt: string;
 }
-
-export interface CartItemProps extends IProductData {
-  quantity: number;
-}

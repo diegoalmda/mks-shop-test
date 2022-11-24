@@ -15,6 +15,7 @@ export const GlobalStyle = createGlobalStyle`
     --price-background: #373737;
     --footer-background: #EEEEEE;
     --quantity-button-border: #BFBFBF;
+    --disabled-button-background: #777777;
 
     --black: #000000;
     --white: #FFFFFF;
@@ -55,6 +56,16 @@ export const GlobalStyle = createGlobalStyle`
 
     &:hover {
       filter: brightness(0.9);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      background: var(--disabled-button-background);
+
+      &:hover {
+        background: var(--disabled-button-background);
+        filter: brightness(1);
+      }
     }
   }
 `;
