@@ -3,7 +3,7 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { SkeletonContainer } from './styles';
 
-export function BoxSkeleton() {
+export function ProductsSkeleton() {
   return (
     <SkeletonTheme baseColor="#cecece" highlightColor="#bebebe">
       <SkeletonContainer>

@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
+import { useEffect, useState, useTransition } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Head from 'next/head';
 
 import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
-import { BoxSkeleton } from '../components/BoxSkeleton';
+import { ProductsSkeleton } from '../components/Skeleton/ProductsSkeleton';
 import { ProductCard } from '../components/ProductCard';
 import { CardsContainer } from '../components/CardsContainer';
 import { CheckoutSection } from '../components/CheckoutSection';
@@ -13,9 +13,13 @@ import { fetchProducts, getAllProducts, getProductsStatus } from '../store/produ
 import { AppDispatch } from '../store';
 
 import { GlobalStyle } from '../styles/GlobalStyle';
+import { HeaderSkeleton } from '../components/Skeleton/HeaderSkeleton';
+
+const Header = dynamic(() => import('../components/Header').then(mod => mod.Header));
 
 export default function Home() {
   const [showCheckout, setShowCheckout] = useState(false);
+  const [isPending] = useTransition();
 
   const dispatch = useDispatch<AppDispatch>();
   const list = useSelector(getAllProducts);
@@ -47,10 +51,10 @@ export default function Home() {
         <title>MKS Store</title>
       </Head>
 
-      <Header showCheckout={handleShowCheckout} />
+      { isPending ? <HeaderSkeleton /> : <Header showCheckout={handleShowCheckout} /> }
 
       <CardsContainer>
-        {productsStatus === 'loading' && <BoxSkeleton />}
+        {productsStatus === 'loading' && <ProductsSkeleton />}
         {productsStatus === 'failed' && <p style={{color: 'red'}}>Ocorreu um erro no servidor de produtos!</p>}
         {list.products.map((product) => (
           <ProductCard key={product.id} product={product} />
