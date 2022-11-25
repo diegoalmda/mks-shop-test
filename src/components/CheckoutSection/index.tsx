@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import { AppDispatch } from '../../store';
 import { getAllCartItems, clearCart } from '../../store/cart';
-import { CartProduct } from '../CartProduct';
+import { CartItem } from '../CartItem';
 
 import {
   CheckoutContainer,
@@ -21,7 +21,7 @@ type CheckoutSectionProps = {
 export function CheckoutSection({ hideCheckout, showCheckout }: CheckoutSectionProps) {
   const products = useSelector(getAllCartItems);
 
-  const total = products.reduce((acc, cartItem) => {
+  const total = products?.reduce((acc, cartItem) => {
     const price = parseFloat(cartItem.price);
     return acc + (cartItem.quantity * price);
   }, 0);
@@ -43,8 +43,8 @@ export function CheckoutSection({ hideCheckout, showCheckout }: CheckoutSectionP
         </button>
       </CheckoutHeader>
       <ProductsContainer>
-        {products.map((product) => (
-          <CartProduct key={product.id} cartItem={product} />
+        {products?.map((product) => (
+          <CartItem key={product.id} cartItem={product} />
         ))}
       </ProductsContainer>
       <TotalContainer>
@@ -55,8 +55,8 @@ export function CheckoutSection({ hideCheckout, showCheckout }: CheckoutSectionP
       </TotalContainer>
       <CheckoutButton
         onClick={handleSendOrder}
-        disabled={products.length === 0}
-        title={`${products.length > 0 ? '' : 'Adicione produtos ao carrinho!'}`}
+        disabled={products?.length === 0}
+        title={`${products?.length > 0 ? '' : 'Adicione produtos ao carrinho!'}`}
       >
         <strong>
           Finalizar Compra

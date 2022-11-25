@@ -20,7 +20,7 @@ type CartProductProps = {
   cartItem: CartItemProps;
 }
 
-export function CartProduct({ cartItem }: CartProductProps) {
+export function CartItem({ cartItem }: CartProductProps) {
   const dispatch = useDispatch<AppDispatch>();
   const productPrice = formatCurrency(cartItem.price);
 
