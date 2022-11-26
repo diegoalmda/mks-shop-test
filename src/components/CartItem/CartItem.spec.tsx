@@ -1,16 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { useDispatch } from 'react-redux';
-import { createMock } from 'ts-jest-mock';
 import { CartItem } from '.';
-import { AppDispatch } from '../../store';
 import { removeItemFromCart, decreaseItemQuantity, addProductToCart } from '../../store/cart';
 import * as redux from 'react-redux';
-
-// const mockDispatch = jest.fn();
-
-// jest.mock('react-redux', () => ({
-//   useDispatch: () => mockDispatch
-// }));
 
 jest.mock('react-redux');
 
@@ -74,24 +65,4 @@ describe('CartItem component', () => {
 
     useDispatchSpy.mockClear();
   });
-
-  // it('should decrease item quantity when button has been clicked', () => {
-  //   render(<CartItem cartItem={cartItem} />);
-
-  //   const buttonCart = screen.getByText('-');
-
-  //   fireEvent.click(buttonCart);
-
-  //   expect(mockDispatch).toHaveBeenCalledWith(decreaseItemQuantity(cartItem));
-  // });
-
-  // it('should remove cart item when button has been clicked', () => {
-  //   render(<CartItem cartItem={cartItem} />);
-
-  //   const buttonCart = screen.getByTitle('Remover');
-
-  //   fireEvent.click(buttonCart);
-
-  //   expect(mockDispatch).toHaveBeenCalledWith(removeItemFromCart(cartItem));
-  // });
 });

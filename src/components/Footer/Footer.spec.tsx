@@ -5,6 +5,6 @@ describe('Footer component', () => {
   it('should render component correctly', () => {
     render(<Footer />);
 
-    expect(screen.getByText('MKS sistemas © Todos os direitos reservados')).toBeInTheDocument();
+    expect(screen.getByText(/MKS sistemas/i)).toBeInTheDocument();
   });
 });

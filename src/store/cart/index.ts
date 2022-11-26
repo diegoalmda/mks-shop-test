@@ -12,6 +12,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addProductToCart(state, action) {
+      // throw new Error(action.type);
       const cartState = [...state.items];
       const itemIndex = cartState.findIndex(cartItem => cartItem.id === action.payload.id);
 

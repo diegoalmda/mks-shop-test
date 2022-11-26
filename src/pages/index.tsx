@@ -52,11 +52,10 @@ export default function Home() {
       <CardsContainer>
         {productsStatus === 'loading' && <ProductsSkeleton />}
         {productsStatus === 'failed' && <p style={{color: 'red'}}>Ocorreu um erro no servidor de produtos!</p>}
-        {list.products.map((product) => (
+        {list.products?.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </CardsContainer>
-
       <Footer />
     </>
   );

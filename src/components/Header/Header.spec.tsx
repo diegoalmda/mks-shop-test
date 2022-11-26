@@ -25,8 +25,6 @@ describe('Header component', () => {
   it('cart button shows correct quantity of cart items', () => {
     render(<Header showCheckout={showCheckoutMocked} />);
 
-    // screen.logTestingPlaygroundURL();
-
     expect(screen.getByText('4')).toBeInTheDocument();
   });
 });

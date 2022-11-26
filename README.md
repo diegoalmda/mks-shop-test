@@ -40,6 +40,16 @@ yarn
 yarn dev
 ```
 
+Para rodar os testes basta digitar os seguintes comandos no terminal:
+
+```bash
+# executando o projeto usando npm
+npm run test
+
+# ou usando yarn
+yarn test
+```
+
 Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o resultado.
 
 ## 🎬 Executando online

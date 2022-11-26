@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 
 import { AppDispatch } from '../../store';
 import { getAllCartItems, clearCart } from '../../store/cart';
+import { CartItemProps } from '../../types/cart';
 import { CartItem } from '../CartItem';
 
 import {
@@ -19,7 +20,7 @@ type CheckoutSectionProps = {
 }
 
 export function CheckoutSection({ hideCheckout, showCheckout }: CheckoutSectionProps) {
-  const products = useSelector(getAllCartItems);
+  const products: CartItemProps[] = useSelector(getAllCartItems);
 
   const total = products?.reduce((acc, cartItem) => {
     const price = parseFloat(cartItem.price);

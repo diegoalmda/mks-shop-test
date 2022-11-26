@@ -4,9 +4,11 @@ import { RootState } from '..';
 import { api } from '../../services/api';
 import { IProductData } from '../../types/product';
 
+type statusProps = 'idle' | 'loading' | 'succeeded' | 'failed';
+
 type InitialStateProps = {
   products: IProductData[],
-  status: 'idle' | 'loading' | 'succeeded' | 'failed',
+  status: statusProps,
 }
 
 const initialState: InitialStateProps = {
